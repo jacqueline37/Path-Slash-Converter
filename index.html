@@ -8,32 +8,56 @@
 </head>
 <body>
   <main class="app">
-    <h1>Path Slash Converter</h1>
-    <p>
-      パス内の <code>/</code> と <code>\</code> を相互変換するだけのシンプルなツールです。
-    </p>
+    <header class="header">
+      <h1>Path Slash Converter</h1>
+      <p>パス内の / と \ を相互変換するツールです。</p>
+    </header>
 
-    <div class="controls">
-      <button id="toBackslash">/ → \ に変換</button>
-      <button id="toSlash">\ → / に変換</button>
-      <button id="swapBoth" class="secondary">自動反転</button>
-      <button id="copyOutput" class="secondary">結果をコピー</button>
-      <button id="clearAll" class="secondary">クリア</button>
-    </div>
+    <section class="samples">
+      <div class="section-title">サンプル入力</div>
+      <div class="button-group">
+        <button type="button" id="sampleWindows" class="secondary">Sample Windows</button>
+        <button type="button" id="sampleUrl" class="secondary">Sample URL</button>
+        <button type="button" id="sampleEscape" class="secondary">Sample Escape</button>
+      </div>
+    </section>
 
-    <div class="row">
-      <section class="panel">
+    <section class="editor">
+      <div class="panel">
         <label for="input">入力</label>
-        <textarea id="input" placeholder="例: C:\Users\YourName\Documents\project\file.txt"></textarea>
-        <div class="hint">複数行でもOKです。</div>
-      </section>
+        <textarea
+          id="input"
+          placeholder="例: C:\Users\YourName\Documents\project\file.txt"
+        ></textarea>
+      </div>
 
-      <section class="panel">
+      <div class="panel">
         <label for="output">出力</label>
-        <textarea id="output" readonly placeholder="変換結果がここに表示されます"></textarea>
+        <textarea
+          id="output"
+          readonly
+          placeholder="変換結果がここに表示されます"
+        ></textarea>
         <div class="status" id="status"></div>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <section class="actions">
+      <div class="section-title">変換</div>
+      <div class="button-group">
+        <button type="button" id="toBackslash">/ → \</button>
+        <button type="button" id="toDoubleBackslash">/ → \\</button>
+        <button type="button" id="toSlash">\ → /</button>
+      </div>
+    </section>
+
+    <section class="tools">
+      <div class="section-title">操作</div>
+      <div class="button-group">
+        <button type="button" id="copyOutput" class="secondary">Copy</button>
+        <button type="button" id="clearAll" class="secondary">Clear</button>
+      </div>
+    </section>
   </main>
 
   <script src="script.js"></script>
