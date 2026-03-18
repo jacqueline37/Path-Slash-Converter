@@ -4,6 +4,7 @@ const status = document.getElementById("status");
 
 const title = document.getElementById("title");
 const description = document.getElementById("description");
+
 const inputLabel = document.getElementById("inputLabel");
 const outputLabel = document.getElementById("outputLabel");
 
@@ -14,130 +15,144 @@ const clearAllButton = document.getElementById("clearAll");
 const langJaButton = document.getElementById("langJa");
 const langEnButton = document.getElementById("langEn");
 
-const i18n = {
-  ja: {
-    title: "Path Slash Converter",
-    description: "パス内の / と \\（¥ / ￥ / ＼）を相互変換するツール",
-    inputLabel: "入力",
-    outputLabel: "出力",
-    inputPlaceholder: "例: C:\\Users\\YourName\\Documents\\project\\file.txt",
-    outputPlaceholder: "変換結果がここに表示されます",
-    swapButton: "/ ⇄ \\ (¥)",
-    copyButton: "コピー",
-    clearButton: "クリア",
-    copied: "出力結果をコピーしました",
-    noOutput: "コピーする結果がありません",
-    cleared: "クリアしました",
-    converted: (count) => `${count}個の / と \\（¥ / ￥ / ＼ 含む）を変換しました`
-  },
-  en: {
-    title: "Path Slash Converter",
-    description: "Convert / and \\ in path strings, including ¥ / ￥ / ＼.",
-    inputLabel: "Input",
-    outputLabel: "Output",
-    inputPlaceholder: "Example: C:\\Users\\YourName\\Documents\\project\\file.txt",
-    outputPlaceholder: "Converted result will appear here",
-    swapButton: "/ ⇄ \\ (¥)",
-    copyButton: "Copy",
-    clearButton: "Clear",
-    copied: "Copied the output",
-    noOutput: "There is no output to copy",
-    cleared: "Cleared",
-    converted: (count) => `Converted ${count} slash characters`
-  }
-};
 
-let currentLang = localStorage.getItem("psc_lang") || "ja";
 
-function getText() {
-  return i18n[currentLang];
+const lang = {
+
+ja:{
+title:"Path Slash Converter",
+desc:"パス内の / と \\（¥ / ￥ / ＼）を相互変換するツール",
+input:"入力",
+output:"出力",
+copy:"コピー",
+clear:"クリア",
+converted:c=>`${c}個変換しました`,
+copied:"コピーしました",
+cleared:"クリアしました",
+no:"コピーするものがありません"
+},
+
+en:{
+title:"Path Slash Converter",
+desc:"Convert / and \\ including ¥ / ￥ / ＼",
+input:"Input",
+output:"Output",
+copy:"Copy",
+clear:"Clear",
+converted:c=>`Converted ${c}`,
+copied:"Copied",
+cleared:"Cleared",
+no:"Nothing to copy"
 }
 
-function applyLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem("psc_lang", lang);
-
-  const t = getText();
-
-  document.documentElement.lang = lang;
-  title.textContent = t.title;
-  description.textContent = t.description;
-  inputLabel.textContent = t.inputLabel;
-  outputLabel.textContent = t.outputLabel;
-  input.placeholder = t.inputPlaceholder;
-  output.placeholder = t.outputPlaceholder;
-  swapSlashButton.textContent = t.swapButton;
-  copyOutputButton.textContent = t.copyButton;
-  clearAllButton.textContent = t.clearButton;
-
-  langJaButton.disabled = lang === "ja";
-  langEnButton.disabled = lang === "en";
 }
 
-function setStatus(message) {
-  status.textContent = message;
 
-  clearTimeout(setStatus.timer);
-  if (!message) return;
 
-  setStatus.timer = setTimeout(() => {
-    status.textContent = "";
-  }, 2200);
+let current = localStorage.getItem("lang") || "ja";
+
+
+
+function setLang(l){
+
+current=l;
+localStorage.setItem("lang",l);
+
+const t=lang[l];
+
+title.textContent=t.title;
+description.textContent=t.desc;
+
+inputLabel.textContent=t.input;
+outputLabel.textContent=t.output;
+
+copyOutputButton.textContent=t.copy;
+clearAllButton.textContent=t.clear;
+
+langJaButton.disabled=l==="ja";
+langEnButton.disabled=l==="en";
+
 }
 
-function countMatches(text, regex) {
-  return (text.match(regex) || []).length;
+
+
+function setStatus(m){
+
+status.textContent=m;
+
+clearTimeout(setStatus.t);
+
+setStatus.t=setTimeout(()=>{
+status.textContent="";
+},2000);
+
 }
 
-function normalizeSlashLikeChars(text) {
-  return text.replace(/[¥￥＼]/g, "\\");
+
+
+function normalize(s){
+
+return s.replace(/[¥￥＼]/g,"\\");
+
 }
 
-function swapSlashes() {
-  const source = normalizeSlashLikeChars(input.value);
 
-  const slashCount = countMatches(source, /\//g);
-  const backslashCount = countMatches(source, /\\/g);
-  const totalCount = slashCount + backslashCount;
 
-  const tempToken = "__SLASH_SWAP_TEMP__";
+function swap(){
 
-  output.value = source
-    .replace(/\\/g, tempToken)
-    .replace(/\//g, "\\")
-    .replace(new RegExp(tempToken, "g"), "/");
+const src=normalize(input.value);
 
-  setStatus(getText().converted(totalCount));
+const a=(src.match(/\//g)||[]).length;
+const b=(src.match(/\\/g)||[]).length;
+
+const temp="__tmp__";
+
+output.value=
+
+src
+.replace(/\\/g,temp)
+.replace(/\//g,"\\")
+.replace(new RegExp(temp,"g"),"/");
+
+setStatus(lang[current].converted(a+b));
+
 }
 
-async function copyOutput() {
-  if (!output.value) {
-    setStatus(getText().noOutput);
-    return;
-  }
 
-  try {
-    await navigator.clipboard.writeText(output.value);
-    setStatus(getText().copied);
-  } catch (error) {
-    output.select();
-    document.execCommand("copy");
-    setStatus(getText().copied);
-  }
+
+async function copy(){
+
+if(!output.value){
+
+setStatus(lang[current].no);
+return;
+
 }
 
-function clearAll() {
-  input.value = "";
-  output.value = "";
-  setStatus(getText().cleared);
-  input.focus();
+await navigator.clipboard.writeText(output.value);
+
+setStatus(lang[current].copied);
+
 }
 
-swapSlashButton.addEventListener("click", swapSlashes);
-copyOutputButton.addEventListener("click", copyOutput);
-clearAllButton.addEventListener("click", clearAll);
 
-langJaButton.addEventListener("click", () => applyLanguage("ja"));
-langEnButton.addEventListener("click", () => applyLanguage("en"));
 
-applyLanguage(currentLang);
+function clearAll(){
+
+input.value="";
+output.value="";
+
+setStatus(lang[current].cleared);
+
+}
+
+
+
+swapSlashButton.onclick=swap;
+copyOutputButton.onclick=copy;
+clearAllButton.onclick=clearAll;
+
+langJaButton.onclick=()=>setLang("ja");
+langEnButton.onclick=()=>setLang("en");
+
+setLang(current);
