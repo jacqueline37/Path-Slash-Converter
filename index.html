@@ -9,76 +9,48 @@
 <body>
 
 <main class="app">
-
 <header class="header">
-
 <div class="header-top">
-
 <div>
 <h1 id="title">Path Slash Converter</h1>
 <p id="description">
-パス内の / と \（¥ / ￥ / ＼）を相互変換するツール
-</p>
+パス内の / と \（¥ / ￥ / ＼）を相互変換するツール</p>
 </div>
 
 <div class="lang-switch">
 <button id="langJa" class="secondary">日本語</button>
 <button id="langEn" class="secondary">English</button>
 </div>
-
 </div>
-
 </header>
 
-
-
 <section class="editor">
-
 <div class="panel">
 <label id="inputLabel">入力</label>
-
 <textarea
 id="input"
-placeholder="例: C:\Users\Name\Documents\file.txt"
-></textarea>
-
+placeholder="例: C:\Users\Name\Documents\file.txt"></textarea>
 </div>
 
-
 <div class="actions">
-
 <button id="swapSlash">/ ⇄ \ (¥)</button>
-
 <button id="copyOutput" class="secondary">
 Copy
 </button>
-
 <button id="clearAll" class="secondary">
 Clear
 </button>
-
 </div>
-
 
 <div class="panel">
-
 <label id="outputLabel">出力</label>
-
-<textarea
-id="output"
-readonly
-placeholder="変換結果"
-></textarea>
-
+<textarea id="output"　readonly　placeholder="変換結果">
+</textarea>
 <div class="status" id="status"></div>
-
 </div>
-
 </section>
-
 </main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
