@@ -10,17 +10,8 @@
   <main class="app">
     <header class="header">
       <h1>Path Slash Converter</h1>
-      <p>パス内の / と \ を相互変換するツールです。</p>
+      <p>パス内の / と \ を変換するツール</p>
     </header>
-
-    <section class="samples">
-      <div class="section-title">サンプル入力</div>
-      <div class="button-group">
-        <button type="button" id="sampleWindows" class="secondary">Sample Windows</button>
-        <button type="button" id="sampleUrl" class="secondary">Sample URL</button>
-        <button type="button" id="sampleEscape" class="secondary">Sample Escape</button>
-      </div>
-    </section>
 
     <section class="editor">
       <div class="panel">
@@ -31,6 +22,14 @@
         ></textarea>
       </div>
 
+      <div class="actions">
+        <button type="button" id="toBackslash">/ → \</button>
+        <button type="button" id="toDoubleBackslash">/ → \\</button>
+        <button type="button" id="toSlash">\ → /</button>
+        <button type="button" id="copyOutput" class="secondary">Copy</button>
+        <button type="button" id="clearAll" class="secondary">Clear</button>
+      </div>
+
       <div class="panel">
         <label for="output">出力</label>
         <textarea
@@ -39,23 +38,6 @@
           placeholder="変換結果がここに表示されます"
         ></textarea>
         <div class="status" id="status"></div>
-      </div>
-    </section>
-
-    <section class="actions">
-      <div class="section-title">変換</div>
-      <div class="button-group">
-        <button type="button" id="toBackslash">/ → \</button>
-        <button type="button" id="toDoubleBackslash">/ → \\</button>
-        <button type="button" id="toSlash">\ → /</button>
-      </div>
-    </section>
-
-    <section class="tools">
-      <div class="section-title">操作</div>
-      <div class="button-group">
-        <button type="button" id="copyOutput" class="secondary">Copy</button>
-        <button type="button" id="clearAll" class="secondary">Clear</button>
       </div>
     </section>
   </main>
