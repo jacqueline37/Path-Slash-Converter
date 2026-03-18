@@ -2,40 +2,51 @@ const input = document.getElementById("input");
 const output = document.getElementById("output");
 const status = document.getElementById("status");
 
+const sampleWindowsButton = document.getElementById("sampleWindows");
+const sampleUrlButton = document.getElementById("sampleUrl");
+const sampleEscapeButton = document.getElementById("sampleEscape");
+
+const toBackslashButton = document.getElementById("toBackslash");
+const toDoubleBackslashButton = document.getElementById("toDoubleBackslash");
+const toSlashButton = document.getElementById("toSlash");
+
+const copyOutputButton = document.getElementById("copyOutput");
+const clearAllButton = document.getElementById("clearAll");
+
 function setStatus(message) {
   status.textContent = message;
 
+  clearTimeout(setStatus.timer);
   if (!message) return;
 
-  clearTimeout(setStatus.timer);
   setStatus.timer = setTimeout(() => {
     status.textContent = "";
-  }, 1800);
+  }, 2200);
 }
 
-function convertToBackslash() {
-  output.value = input.value.replace(/\//g, "\\");
+function countMatches(text, regex) {
+  return (text.match(regex) || []).length;
 }
 
-function convertToSlash() {
-  output.value = input.value.replace(/\\/g, "/");
+function convertSlashToBackslash() {
+  const source = input.value;
+  const count = countMatches(source, /\//g);
+  output.value = source.replace(/\//g, "\\");
+  setStatus(`${count}個の / を \\ に変換しました`);
 }
 
-function autoSwap() {
-  const value = input.value;
-  const slashCount = (value.match(/\//g) || []).length;
-  const backslashCount = (value.match(/\\/g) || []).length;
+function convertSlashToDoubleBackslash() {
+  const source = input.value;
+  const count = countMatches(source, /\//g);
+  output.value = source.replace(/\//g, "\\\\");
+  setStatus(`${count}個の / を \\\\ に変換しました`);
+}
 
-  if (slashCount === 0 && backslashCount === 0) {
-    output.value = value;
-    return;
-  }
-
-  if (backslashCount >= slashCount) {
-    convertToSlash();
-  } else {
-    convertToBackslash();
-  }
+function convertBackslashToSlash() {
+  const source = input.value;
+  const count = countMatches(source, /\\/g);
+  output.value = source.replace(/\\/g, "/");
+  setStatus(`${count}個の \\ を / に変換しました`);
 }
 
 async function copyOutput() {
@@ -46,11 +57,11 @@ async function copyOutput() {
 
   try {
     await navigator.clipboard.writeText(output.value);
-    setStatus("コピーしました");
+    setStatus("出力結果をコピーしました");
   } catch (error) {
     output.select();
     document.execCommand("copy");
-    setStatus("コピーしました");
+    setStatus("出力結果をコピーしました");
   }
 }
 
@@ -60,10 +71,31 @@ function clearAll() {
   setStatus("クリアしました");
 }
 
-document.getElementById("toBackslash").addEventListener("click", convertToBackslash);
-document.getElementById("toSlash").addEventListener("click", convertToSlash);
-document.getElementById("swapBoth").addEventListener("click", autoSwap);
-document.getElementById("copyOutput").addEventListener("click", copyOutput);
-document.getElementById("clearAll").addEventListener("click", clearAll);
+function loadSampleWindows() {
+  input.value = "C:\\Users\\Jacqueline\\Documents\\Project\\tree_asset.fbx";
+  output.value = "";
+  setStatus("Windowsパスのサンプルを入れました");
+}
 
-input.addEventListener("input", autoSwap);
+function loadSampleUrl() {
+  input.value = "Assets/Textures/Foliage/leaf_albedo.png";
+  output.value = "";
+  setStatus("スラッシュ区切りのサンプルを入れました");
+}
+
+function loadSampleEscape() {
+  input.value = "folder/subfolder/file_name_v01.txt";
+  output.value = "";
+  setStatus("エスケープ変換向けサンプルを入れました");
+}
+
+sampleWindowsButton.addEventListener("click", loadSampleWindows);
+sampleUrlButton.addEventListener("click", loadSampleUrl);
+sampleEscapeButton.addEventListener("click", loadSampleEscape);
+
+toBackslashButton.addEventListener("click", convertSlashToBackslash);
+toDoubleBackslashButton.addEventListener("click", convertSlashToDoubleBackslash);
+toSlashButton.addEventListener("click", convertBackslashToSlash);
+
+copyOutputButton.addEventListener("click", copyOutput);
+clearAllButton.addEventListener("click", clearAll);
