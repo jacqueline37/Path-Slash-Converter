@@ -34,7 +34,7 @@ function swapSlashes() {
     .replace(/\//g, "\\")
     .replace(new RegExp(tempToken, "g"), "/");
 
-  setStatus(`${totalCount}個の / と \\ を変換しました`);
+  setStatus(`${totalCount}個の / と \\（¥）を変換しました`);
 }
 
 async function copyOutput() {
