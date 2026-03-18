@@ -9,17 +9,25 @@
 <body>
   <main class="app">
     <header class="header">
-      <h1>Path Slash Converter</h1>
-      <p>パス内の / と \（¥ / ￥ も対応）を相互変換するツール</p>
-      <p>複数同時に変換したい時は改行で入力</p>
+      <div class="header-top">
+        <div>
+          <h1 id="title">Path Slash Converter</h1>
+          <p id="description">パス内の / と \（¥ / ￥ / ＼）を相互変換するツール</p>
+        </div>
+
+        <div class="lang-switch" role="group" aria-label="Language switch">
+          <button type="button" id="langJa" class="secondary">日本語</button>
+          <button type="button" id="langEn" class="secondary">English</button>
+        </div>
+      </div>
     </header>
 
     <section class="editor">
       <div class="panel">
-        <label for="input">入力</label>
+        <label for="input" id="inputLabel">入力</label>
         <textarea
           id="input"
-          placeholder="例: C:\Users\YourName\Documents\project\file.txt （環境によっては ¥ と表示）"
+          placeholder="例: C:\Users\YourName\Documents\project\file.txt"
         ></textarea>
       </div>
 
@@ -30,7 +38,7 @@
       </div>
 
       <div class="panel">
-        <label for="output">出力</label>
+        <label for="output" id="outputLabel">出力</label>
         <textarea
           id="output"
           readonly
