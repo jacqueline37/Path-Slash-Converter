@@ -2,9 +2,7 @@ const input = document.getElementById("input");
 const output = document.getElementById("output");
 const status = document.getElementById("status");
 
-const toBackslashButton = document.getElementById("toBackslash");
-const toDoubleBackslashButton = document.getElementById("toDoubleBackslash");
-const toSlashButton = document.getElementById("toSlash");
+const swapSlashButton = document.getElementById("swapSlash");
 const copyOutputButton = document.getElementById("copyOutput");
 const clearAllButton = document.getElementById("clearAll");
 
@@ -23,25 +21,20 @@ function countMatches(text, regex) {
   return (text.match(regex) || []).length;
 }
 
-function convertSlashToBackslash() {
+function swapSlashes() {
   const source = input.value;
-  const count = countMatches(source, /\//g);
-  output.value = source.replace(/\//g, "\\");
-  setStatus(`${count}個の / を \\ に変換しました`);
-}
+  const slashCount = countMatches(source, /\//g);
+  const backslashCount = countMatches(source, /\\/g);
+  const totalCount = slashCount + backslashCount;
 
-function convertSlashToDoubleBackslash() {
-  const source = input.value;
-  const count = countMatches(source, /\//g);
-  output.value = source.replace(/\//g, "\\\\");
-  setStatus(`${count}個の / を \\\\ に変換しました`);
-}
+  const tempToken = "__SLASH_SWAP_TEMP__";
 
-function convertBackslashToSlash() {
-  const source = input.value;
-  const count = countMatches(source, /\\/g);
-  output.value = source.replace(/\\/g, "/");
-  setStatus(`${count}個の \\ を / に変換しました`);
+  output.value = source
+    .replace(/\\/g, tempToken)
+    .replace(/\//g, "\\")
+    .replace(new RegExp(tempToken, "g"), "/");
+
+  setStatus(`${totalCount}個の / と \\ を変換しました`);
 }
 
 async function copyOutput() {
@@ -67,8 +60,6 @@ function clearAll() {
   input.focus();
 }
 
-toBackslashButton.addEventListener("click", convertSlashToBackslash);
-toDoubleBackslashButton.addEventListener("click", convertSlashToDoubleBackslash);
-toSlashButton.addEventListener("click", convertBackslashToSlash);
+swapSlashButton.addEventListener("click", swapSlashes);
 copyOutputButton.addEventListener("click", copyOutput);
 clearAllButton.addEventListener("click", clearAll);
