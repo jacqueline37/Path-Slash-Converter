@@ -21,12 +21,13 @@ function countMatches(text, regex) {
   return (text.match(regex) || []).length;
 }
 
-function normalizeYenToBackslash(text) {
-  return text.replace(/¥/g, "\\");
+function normalizeSlashLikeChars(text) {
+  return text
+    .replace(/[¥￥＼]/g, "\\");
 }
 
 function swapSlashes() {
-  const source = normalizeYenToBackslash(input.value);
+  const source = normalizeSlashLikeChars(input.value);
 
   const slashCount = countMatches(source, /\//g);
   const backslashCount = countMatches(source, /\\/g);
@@ -39,7 +40,7 @@ function swapSlashes() {
     .replace(/\//g, "\\")
     .replace(new RegExp(tempToken, "g"), "/");
 
-  setStatus(`${totalCount}個の / と \\（¥）を変換しました`);
+  setStatus(`${totalCount}個の / と \\（¥/￥/＼含む）を変換しました`);
 }
 
 async function copyOutput() {
