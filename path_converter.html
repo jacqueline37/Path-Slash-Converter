@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Path Slash Converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <h1>Path Slash Converter</h1>
+    <p>
+      パス内の <code>/</code> と <code>\</code> を相互変換するだけのシンプルなツールです。
+    </p>
+
+    <div class="controls">
+      <button id="toBackslash">/ → \ に変換</button>
+      <button id="toSlash">\ → / に変換</button>
+      <button id="swapBoth" class="secondary">自動反転</button>
+      <button id="copyOutput" class="secondary">結果をコピー</button>
+      <button id="clearAll" class="secondary">クリア</button>
+    </div>
+
+    <div class="row">
+      <section class="panel">
+        <label for="input">入力</label>
+        <textarea id="input" placeholder="例: C:\Users\YourName\Documents\project\file.txt"></textarea>
+        <div class="hint">複数行でもOKです。</div>
+      </section>
+
+      <section class="panel">
+        <label for="output">出力</label>
+        <textarea id="output" readonly placeholder="変換結果がここに表示されます"></textarea>
+        <div class="status" id="status"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
