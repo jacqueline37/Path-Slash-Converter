@@ -1,287 +1,165 @@
 :root {
-
 --bg:#f6f7fb;
 --panel:#ffffff;
 --text:#1f2937;
 --muted:#6b7280;
 --line:#dbe2ea;
-
 --accent:#2563eb;
 --accent-hover:#1d4ed8;
-
 --secondary-bg:#eef2ff;
 --secondary-text:#1e3a8a;
 --secondary-hover:#e0e7ff;
-
 --status:#0f766e;
-
 --shadow:0 10px 30px rgba(0,0,0,0.06);
-
 }
-
-
 
 @media (prefers-color-scheme: dark) {
 
 :root {
-
 --bg:#0b1220;
 --panel:#121a2b;
 --text:#e5e7eb;
 --muted:#94a3b8;
 --line:#243045;
-
 --accent:#3b82f6;
 --accent-hover:#60a5fa;
-
 --secondary-bg:#1a2540;
 --secondary-text:#dbeafe;
 --secondary-hover:#223156;
-
 --status:#34d399;
-
 --shadow:0 12px 32px rgba(0,0,0,0.28);
-
 }
-
 }
-
-
 
 *{box-sizing:border-box}
-
-
-
 body{
-
 margin:0;
 padding:24px;
-
 background:var(--bg);
 color:var(--text);
-
 font-family:
-
 Inter,
 "Segoe UI",
 Roboto,
 "Hiragino Sans",
 "Yu Gothic UI",
 sans-serif;
-
 }
-
-
 
 .app{
-
 max-width:980px;
 margin:auto;
-
 background:var(--panel);
-
 border:1px solid var(--line);
-
 border-radius:22px;
-
 padding:28px;
-
 box-shadow:var(--shadow);
-
 }
-
-
 
 .header{
-
 margin-bottom:20px;
-
 }
 
-
-
 .header-top{
-
 display:flex;
 justify-content:space-between;
 gap:16px;
-
 }
-
-
 
 h1{
-
 margin:0 0 8px;
 font-size:28px;
-
 }
-
-
 
 p{
-
 margin:0;
 color:var(--muted);
-
 }
 
-
-
 .editor{
-
 display:flex;
 flex-direction:column;
 gap:16px;
-
 }
 
-
-
 .panel{
-
 display:flex;
 flex-direction:column;
 gap:8px;
-
 }
-
-
 
 textarea{
-
 width:100%;
-
 min-height:180px;
-
 border:1px solid var(--line);
-
 border-radius:14px;
-
 padding:14px;
-
 resize:vertical;
-
 font-family:Consolas,monospace;
-
 background:transparent;
 color:var(--text);
-
 }
-
-
 
 textarea:focus{
-
 outline:2px solid rgba(59,130,246,0.2);
-
 border-color:var(--accent);
-
 }
-
-
 
 .actions{
-
 display:flex;
 gap:10px;
-
 }
-
-
 
 .lang-switch{
-
 display:flex;
 gap:8px;
-
 }
-
-
 
 button{
-
 border:0;
-
 border-radius:12px;
-
 padding:10px 16px;
-
 font-weight:700;
-
 cursor:pointer;
-
 background:var(--accent);
-
 color:white;
-
 }
-
-
 
 button:hover{
-
 background:var(--accent-hover);
-
 }
-
-
 
 button.secondary{
-
 background:var(--secondary-bg);
-
 color:var(--secondary-text);
-
 }
-
-
 
 button.secondary:hover{
-
 background:var(--secondary-hover);
-
 }
-
-
 
 button:disabled{
-
 opacity:.6;
 cursor:default;
-
 }
 
-
-
 .status{
-
 min-height:20px;
 font-size:13px;
 color:var(--status);
-
 }
 
-
-
 @media(max-width:760px){
-
 .header-top{
-
 flex-direction:column;
-
 }
 
 .actions{
-
 flex-direction:column;
-
 }
 
 button{
-
 width:100%;
-
 }
 
 }
