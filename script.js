@@ -64,6 +64,7 @@ function clearAll() {
   input.value = "";
   output.value = "";
   setStatus("クリアしました");
+  input.focus();
 }
 
 toBackslashButton.addEventListener("click", convertSlashToBackslash);
