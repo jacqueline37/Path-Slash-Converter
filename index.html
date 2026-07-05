@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Path Slash Converter</title>
+  <meta name="description" content="パス内の / と \（¥ / ￥ / ＼）を相互変換できる無料のブラウザツール。インストール不要、コピー1クリックで完了。" />
+  <meta property="og:title" content="Path Slash Converter" />
+  <meta property="og:description" content="パス内の / と \（¥ / ￥ / ＼）を相互変換できる無料のブラウザツール。インストール不要、コピー1クリックで完了。" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
   <link rel="stylesheet" href="style.css" />
 </head>
   <!-- Google tag (gtag.js) -->
@@ -35,7 +40,7 @@
 
 <section class="editor">
 <div class="panel">
-<label id="inputLabel">入力</label>
+<label id="inputLabel" for="input">入力</label>
 <textarea
 id="input"
 placeholder="C:\Users\Name\Documents\file.txt"></textarea>
@@ -52,7 +57,7 @@ Clear
 </div>
 
 <div class="panel">
-<label id="outputLabel">出力</label>
+<label id="outputLabel" for="output">出力</label>
 <textarea id="output" readonly placeholder="変換結果"></textarea>
 <div class="status" id="status"></div>
 </div>
