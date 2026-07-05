@@ -97,12 +97,8 @@ function swap() {
   const src = normalize(input.value);
   const slashCount = (src.match(/\//g) || []).length;
   const backslashCount = (src.match(/\\/g) || []).length;
-  const temp = "__tmp__";
 
-  output.value = src
-    .replace(/\\/g, temp)
-    .replace(/\//g, "\\")
-    .replace(new RegExp(temp, "g"), "/");
+  output.value = src.replace(/[\/\\]/g, (m) => (m === "/" ? "\\" : "/"));
 
   setStatus(lang[current].converted(slashCount + backslashCount));
 }
