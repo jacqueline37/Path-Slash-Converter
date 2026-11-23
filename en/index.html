@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slash and Backslash Path Converter | Path Slash Converter</title>
+  <meta name="description" content="Free tool that converts every slash (/) and backslash (\) in a file path to one style. Turn Windows paths into Mac and Linux paths and back. Paste and copy, nothing to install." />
+  <link rel="canonical" href="https://jacqueline37.github.io/Path-Slash-Converter/en/" />
+  <link rel="alternate" hreflang="ja" href="https://jacqueline37.github.io/Path-Slash-Converter/" />
+  <link rel="alternate" hreflang="en" href="https://jacqueline37.github.io/Path-Slash-Converter/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://jacqueline37.github.io/Path-Slash-Converter/" />
+  <meta name="theme-color" content="#eef2ef" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#12181b" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+
+  <meta property="og:site_name" content="Path Slash Converter" />
+  <meta property="og:title" content="Slash and Backslash Path Converter" />
+  <meta property="og:description" content="Convert every / and \ in a file path to one style. Windows to Mac and Linux paths and back. Paste and copy, nothing to install." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jacqueline37.github.io/Path-Slash-Converter/en/" />
+  <meta property="og:image" content="https://jacqueline37.github.io/Path-Slash-Converter/assets/og-image-en.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="C:\Users\Name\Documents\file.txt converted to C:/Users/Name/Documents/file.txt" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://jacqueline37.github.io/Path-Slash-Converter/assets/og-image-en.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" /></noscript>
+  <link rel="stylesheet" href="../style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Path Slash Converter",
+    "url": "https://jacqueline37.github.io/Path-Slash-Converter/en/",
+    "description": "Free browser tool that converts every slash (/) and backslash (\\) in a file path to one style.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZM8ZQH42C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JZM8ZQH42C');
+  </script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-bar">
+      <a class="brand" href="./">Path Slash Converter</a>
+      <nav class="lang" aria-label="Language">
+        <a href="../" hreflang="ja" lang="ja">日本語</a>
+        <a href="./" hreflang="en" lang="en" aria-current="page">English</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="intro">
+        <h1>Convert slashes and backslashes in file paths</h1>
+        <p class="lead">Make every separator in a path the same, all <span class="sep">/</span> or all <span class="sep">\</span>. Useful when moving paths between Windows, Mac and Linux.</p>
+      </div>
+
+      <div class="sheet">
+        <div class="field">
+          <div class="field-head">
+            <label for="input">Path to convert</label>
+            <button type="button" id="clearAll" class="text-button">Clear</button>
+          </div>
+          <textarea
+            id="input"
+            class="path-box"
+            rows="3"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            autocorrect="off"
+            placeholder="C:\Users\Name\Documents\file.txt"></textarea>
+        </div>
+
+        <fieldset class="direction">
+          <legend>Separator to use</legend>
+          <div class="direction-options">
+            <label class="option">
+              <input type="radio" name="target" value="/" checked />
+              <span class="glyph" aria-hidden="true">/</span>
+              <span class="option-text">Slash</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="target" value="\" />
+              <span class="glyph" aria-hidden="true">\</span>
+              <span class="option-text">Backslash (¥)</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <div class="field-head">
+            <label for="output">Result</label>
+          </div>
+          <output id="output" for="input" class="path-box result" data-empty="The converted path appears here"></output>
+          <div class="result-foot">
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+            <button type="button" id="copyOutput" class="primary">Copy result</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">Paths are converted on this page and never sent anywhere. URLs such as https:// are left as they are.</p>
+
+      <section class="guide" aria-labelledby="howto">
+        <h2 id="howto">How to use it</h2>
+        <ol class="steps">
+          <li>Paste a path into the input. Several lines are converted at once.</li>
+          <li>Under “Separator to use”, pick <span class="sep">/</span> or <span class="sep">\</span>. The opposite of what your path mostly uses is picked for you.</li>
+          <li>Select “Copy result”, or press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> in the input.</li>
+        </ol>
+      </section>
+
+      <section class="guide" aria-labelledby="examples">
+        <h2 id="examples">Examples</h2>
+        <dl class="examples">
+          <div class="example">
+            <dt>Windows path to Mac or Linux</dt>
+            <dd><code>C:\Users\Name\Documents</code></dd>
+            <dd><code>C:<mark>/</mark>Users<mark>/</mark>Name<mark>/</mark>Documents</code></dd>
+          </div>
+          <div class="example">
+            <dt>Mac or Linux path to Windows</dt>
+            <dd><code>/usr/local/bin</code></dd>
+            <dd><code><mark>\</mark>usr<mark>\</mark>local<mark>\</mark>bin</code></dd>
+          </div>
+          <div class="example">
+            <dt>Mixed separators</dt>
+            <dd><code>src\components/Button.tsx</code></dd>
+            <dd><code>src<mark>/</mark>components/Button.tsx</code></dd>
+          </div>
+          <div class="example">
+            <dt>URLs are left alone</dt>
+            <dd><code>a\b.md https://example.com</code></dd>
+            <dd><code>a<mark>/</mark>b.md https://example.com</code></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="guide" aria-labelledby="faq">
+        <h2 id="faq">Questions</h2>
+        <h3>Why does <span class="sep">\</span> sometimes look like ¥?</h3>
+        <p>In the old Japanese character set JIS X 0201, the yen sign sits where ASCII has the backslash, so many Japanese fonts draw that character as ¥. It is the same character, and Windows treats both as a path separator. This tool converts ¥, fullwidth ￥ and ＼ as backslashes too.</p>
+        <h3>Does it handle network paths like <span class="sep">\\</span>server<span class="sep">\</span>share?</h3>
+        <p>Yes. The leading <span class="sep">\\</span> is converted too, so picking <span class="sep">/</span> gives <code>//server/share</code>.</p>
+        <h3>Is my path sent anywhere?</h3>
+        <p>No. Everything runs in your browser.</p>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <a href="https://github.com/jacqueline37/Path-Slash-Converter">Source code on GitHub</a>
+    </footer>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

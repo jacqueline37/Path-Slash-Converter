@@ -13,7 +13,7 @@ https://jacqueline37.github.io/Path-Slash-Converter/
 - 変えた区切り文字を赤ペンのように色付きで表示
 - `https://` などの URL はそのまま残す
 - 変換結果をワンクリックでコピー（入力欄で `Ctrl` + `Enter` でもコピー）
-- 日本語 / English の切り替え（`?lang=en` で英語表示）
+- 日本語 / English の切り替え（英語版: https://jacqueline37.github.io/Path-Slash-Converter/en/ ）
 - 端末のダーク / ライトモード設定に自動対応
 - 入力したパスはブラウザの中だけで処理され、どこにも送信されません
 
